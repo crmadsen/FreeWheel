@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.FreeWheel.biketracker.databinding.FragmentHistoryBinding
 import com.FreeWheel.biketracker.data.model.Ride
+import com.FreeWheel.biketracker.utils.UnitUtils
 
 class HistoryFragment : Fragment() {
 
@@ -82,8 +83,8 @@ class HistoryFragment : Fragment() {
             }
             appendLine("Duration: $durationText")
             
-            appendLine("Average Speed: ${String.format("%.1f km/h", ride.averageSpeed)}")
-            appendLine("Max Speed: ${String.format("%.1f km/h", ride.maxSpeed)}")
+            appendLine("Average Speed: ${UnitUtils.formatSpeed(ride.averageSpeed, requireContext())}")
+            appendLine("Max Speed: ${UnitUtils.formatSpeed(ride.maxSpeed, requireContext())}")
             
             if (ride.averageHeartRate > 0) {
                 appendLine("Average Heart Rate: ${ride.averageHeartRate} bpm")
@@ -129,8 +130,8 @@ class HistoryFragment : Fragment() {
                 else -> String.format("%dm", minutes)
             }
             appendLine("⏱️ Duration: $durationText")
-            appendLine("🏃 Avg Speed: ${String.format("%.1f km/h", ride.averageSpeed)}")
-            appendLine("🚀 Max Speed: ${String.format("%.1f km/h", ride.maxSpeed)}")
+            appendLine("🏃 Avg Speed: ${UnitUtils.formatSpeed(ride.averageSpeed, requireContext())}")
+            appendLine("🚀 Max Speed: ${UnitUtils.formatSpeed(ride.maxSpeed, requireContext())}")
             
             if (ride.averageHeartRate > 0) {
                 appendLine("❤️ Avg HR: ${ride.averageHeartRate} bpm")

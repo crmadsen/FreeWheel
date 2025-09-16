@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.FreeWheel.biketracker.R
 import com.FreeWheel.biketracker.data.model.Ride
 import com.FreeWheel.biketracker.databinding.ItemRideBinding
+import com.FreeWheel.biketracker.utils.UnitUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,13 +48,13 @@ class RideHistoryAdapter(
                 }
                 
                 // Distance
-                rideDistance.text = String.format("%.2f km", ride.distance)
+                rideDistance.text = UnitUtils.formatDistance(ride.distance, binding.root.context)
                 
                 // Average speed
-                rideAvgSpeed.text = String.format("Avg: %.1f km/h", ride.averageSpeed)
+                rideAvgSpeed.text = "Avg: ${UnitUtils.formatSpeed(ride.averageSpeed, binding.root.context)}"
                 
                 // Max speed
-                rideMaxSpeed.text = String.format("Max: %.1f km/h", ride.maxSpeed)
+                rideMaxSpeed.text = "Max: ${UnitUtils.formatSpeed(ride.maxSpeed, binding.root.context)}"
                 
                 // Click listeners
                 root.setOnClickListener { onRideClick(ride) }

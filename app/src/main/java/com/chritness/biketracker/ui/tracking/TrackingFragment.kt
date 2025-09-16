@@ -1,5 +1,7 @@
 package com.FreeWheel.biketracker.ui.tracking
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.FreeWheel.biketracker.R
 import com.FreeWheel.biketracker.databinding.FragmentTrackingBinding
+import com.FreeWheel.biketracker.utils.UnitUtils
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.overlay.Polyline
 import org.osmdroid.views.overlay.Marker
 
-class TrackingFragment : Fragment() {
+class TrackingFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private var _binding: FragmentTrackingBinding? = null
     private val binding get() = _binding!!
     
     private val trackingViewModel: TrackingViewModel by activityViewModels()
+    private lateinit var sharedPreferences: SharedPreferences
     
     private var routePolyline: Polyline? = null
     private var currentLocationMarker: Marker? = null
@@ -36,19 +40,24 @@ class TrackingFragment : Fragment() {
         _binding = FragmentTrackingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // Initialize SharedPreferences
+        sharedPreferences = requireContext().getSharedPreferences(UnitUtils.PREFS_NAME, Context.MODE_PRIVATE)
+
         android.util.Log.d("TrackingFragment", "Setting up observers and button listeners")
 
         // Observe LiveData and update UI
         trackingViewModel.currentSpeed.observe(viewLifecycleOwner) { speed ->
-            binding.currentSpeedText.text = String.format("%.1f km/h", speed)
+            binding.currentSpeedText.text = UnitUtils.formatSpeed(speed, requireContext())
         }
 
         trackingViewModel.averageSpeed.observe(viewLifecycleOwner) { avgSpeed ->
-            binding.averageSpeedText.text = String.format("Avg: %.1f km/h", avgSpeed)
+            val speedUnit = UnitUtils.getSpeedUnit(requireContext())
+            val formattedSpeed = UnitUtils.convertSpeed(avgSpeed, requireContext())
+            binding.averageSpeedText.text = String.format("Avg: %.1f %s", formattedSpeed, speedUnit)
         }
 
         trackingViewModel.distance.observe(viewLifecycleOwner) { distance ->
-            binding.distanceText.text = String.format("%.2f km", distance)
+            binding.distanceText.text = UnitUtils.formatDistance(distance, requireContext())
         }
 
         trackingViewModel.duration.observe(viewLifecycleOwner) { duration ->
@@ -96,6 +105,42 @@ class TrackingFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Register for SharedPreferences changes
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Unregister SharedPreferences listener
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == UnitUtils.PREF_UNIT_SYSTEM) {
+            // Force refresh of all displayed values when unit system changes
+            refreshDisplayedValues()
+        }
+    }
+
+    private fun refreshDisplayedValues() {
+        // Manually trigger observers to refresh displayed values
+        trackingViewModel.currentSpeed.value?.let { speed ->
+            binding.currentSpeedText.text = UnitUtils.formatSpeed(speed, requireContext())
+        }
+        
+        trackingViewModel.averageSpeed.value?.let { avgSpeed ->
+            val speedUnit = UnitUtils.getSpeedUnit(requireContext())
+            val formattedSpeed = UnitUtils.convertSpeed(avgSpeed, requireContext())
+            binding.averageSpeedText.text = String.format("Avg: %.1f %s", formattedSpeed, speedUnit)
+        }
+        
+        trackingViewModel.distance.value?.let { distance ->
+            binding.distanceText.text = UnitUtils.formatDistance(distance, requireContext())
+        }
     }
 
     private fun showFinishRideDialog() {
