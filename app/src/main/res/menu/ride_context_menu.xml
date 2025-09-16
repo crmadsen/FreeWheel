@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item
+        android:id="@+id/action_delete"
+        android:title="Delete"
+        android:icon="@drawable/ic_delete" />
+    
+    <item
+        android:id="@+id/action_export"
+        android:title="Export GPX"
+        android:icon="@drawable/ic_download" />
+    
+    <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        android:icon="@drawable/ic_share" />
+        
+</menu>

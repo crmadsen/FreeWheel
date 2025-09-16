@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode colors -->
+    <color name="primary_200">#BB86FC</color>
+    <color name="primary_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="dark_surface">#1F1F1F</color>
+    <color name="dark_background">#121212</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

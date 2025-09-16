@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">FreeWheel</string>
+    <string name="title_tracking">Tracking</string>
+    <string name="title_map">Map</string>
+    <string name="title_history">History</string>
+    <string name="title_settings">Settings</string>
+    
+    <!-- Tracking Screen -->
+    <string name="start_ride">Start Ride</string>
+    <string name="stop_ride">Stop Ride</string>
+    <string name="pause_ride">Pause Ride</string>
+    <string name="resume_ride">Resume Ride</string>
+    <string name="finish_ride">Finish Ride</string>
+    <string name="current_speed">Current Speed</string>
+    <string name="distance">Distance</string>
+    <string name="duration">Duration</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="avg_speed">Avg Speed</string>
+    <string name="max_speed">Max Speed</string>
+    <string name="avg_heart_rate">Avg HR</string>
+    <string name="max_heart_rate">Max HR</string>
+    
+    <!-- Units -->
+    <string name="kmh">km/h</string>
+    <string name="km">km</string>
+    <string name="bpm">bpm</string>
+    
+    <!-- Permissions -->
+    <string name="location_permission_required">Location permission is required for GPS tracking</string>
+    <string name="bluetooth_permission_required">Bluetooth permission is required for heart rate monitoring</string>
+    
+    <!-- Heart Rate Monitor -->
+    <string name="connect_heart_rate_monitor">Connect Heart Rate Monitor</string>
+    <string name="heart_rate_connected">Heart Rate Monitor Connected</string>
+    <string name="heart_rate_disconnected">Heart Rate Monitor Disconnected</string>
+    <string name="searching_devices">Searching for devices...</string>
+    
+    <!-- Map -->
+    <string name="current_location">Current Location</string>
+    <string name="route_tracking">Route Tracking</string>
+    
+    <!-- History -->
+    <string name="ride_history">Ride History</string>
+    <string name="no_rides">No rides recorded yet</string>
+</resources>

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build and Install APK",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/gradlew",
+            "args": ["installDebug"],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ANDROID_HOME": "/home/chmadsen/Android/Sdk"
+            }
+        }
+    ]
+}

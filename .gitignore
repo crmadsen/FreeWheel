@@ -1,0 +1,52 @@
+gradle.properties
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Development and testing files
+simulate_bike_ride.sh
+simulate_bike_ride_fast.sh
+simulate_gpx_ride.sh
+simulate_colorado_springs.sh
+gpx_simulator.py
+*.gpx
+test_circle.xml
+android-env-setup.sh
+ANDROID_SETUP.md
+
+# APK files (releases should be distributed via GitHub releases, not repo)
+*.apk
+
+# Security files - NEVER commit these!
+*.keystore
+*.jks
+*.key
+release-key*
+keystore.properties
+signing.properties
+
+# Debug and simulator files
+HeartRateSimulator.kt
+**/debug/
+**/test/
+**/*Test.kt
+**/*Debug.kt
+
+# Temporary and log files
+*.log
+*.tmp
+temp/
+tmp/

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bike-themed primary colors -->
+    <color name="bike_blue_200">#FF81C7F5</color>
+    <color name="bike_blue_500">#FF2196F3</color>
+    <color name="bike_blue_700">#FF1565C0</color>
+    
+    <!-- Legacy purple colors (keeping for backwards compatibility) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    
+    <!-- Accent colors -->
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="orange_500">#FFFF5722</color>
+    
+    <!-- Base colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Speed text color - bright green for visibility in both light and dark mode -->
+    <color name="speed_text_color">#FF00E676</color>
+    
+    <!-- Heart rate color - red that works in both modes -->
+    <color name="heart_rate_color">#FFF44336</color>
+    
+    <!-- Distance text color - blue that works in both modes -->
+    <color name="distance_text_color">#FF2196F3</color>
+    
+    <!-- Duration text color - amber for good visibility -->
+    <color name="duration_text_color">#FFFF9800</color>
+</resources>

@@ -1,0 +1,182 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Android Emulator",
+			"type": "shell",
+			"command": "${env:HOME}/Android/Sdk/emulator/emulator",
+			"args": [
+				"-avd",
+				"Medium_Phone_API_36.0",
+				"-gpu",
+				"swiftshader_indirect",
+				"-no-snapshot"
+			],
+			"isBackground": true,
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Clean Android Project",
+			"type": "shell",
+			"command": "./gradlew clean",
+			"isBackground": false,
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Build Android Debug APK",
+			"type": "shell",
+			"command": "./gradlew assembleDebug",
+			"isBackground": false,
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOn": "Clean Android Project",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Android Release APK",
+			"type": "shell",
+			"command": "./gradlew assembleRelease",
+			"isBackground": false,
+			"group": "build",
+			"dependsOn": "Clean Android Project",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Debug APK to Device",
+			"type": "shell",
+			"command": "./gradlew installDebug",
+			"isBackground": false,
+			"group": "test",
+			"dependsOn": "Build Android Debug APK",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Install and Launch App",
+			"type": "shell",
+			"command": "${env:HOME}/Android/Sdk/platform-tools/adb",
+			"args": [
+				"shell",
+				"am",
+				"start",
+				"-n",
+				"com.FreeWheel.biketracker/.MainActivity"
+			],
+			"isBackground": false,
+			"group": "test",
+			"dependsOn": "Install Debug APK to Device",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Android Tests",
+			"type": "shell",
+			"command": "./gradlew test",
+			"isBackground": false,
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Lint Android Project",
+			"type": "shell",
+			"command": "./gradlew lint",
+			"isBackground": false,
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Simulate GPX Bike Ride",
+			"type": "shell",
+			"command": "python3",
+			"args": [
+				"gpx_simulator.py",
+				"colorado_springs_sample.gpx",
+				"--speed",
+				"25",
+				"--adb-path",
+				"${env:HOME}/Android/Sdk/platform-tools/adb"
+			],
+			"isBackground": true,
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Simulate GPX Ride (Loop)",
+			"type": "shell",
+			"command": "python3",
+			"args": [
+				"gpx_simulator.py",
+				"colorado_springs_sample.gpx",
+				"--speed",
+				"25",
+				"--loop",
+				"--adb-path",
+				"${env:HOME}/Android/Sdk/platform-tools/adb"
+			],
+			"isBackground": true,
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new"
+			},
+			"problemMatcher": []
+		}
+	]
+}

@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Your SVG bicycle - slightly smaller with stroke wheels -->
+    <group android:scaleX="0.4"
+           android:scaleY="0.4"
+           android:translateX="23"
+           android:translateY="32">
+    
+        <!-- Left wheel (rear) - unfilled stroke using path -->
+        <path android:fillColor="@android:color/transparent"
+              android:strokeColor="#FFFFFF"
+              android:strokeWidth="6"
+              android:pathData="M 12.45,60.65 A 30.9,30.9 0 1,1 74.25,60.65 A 30.9,30.9 0 1,1 12.45,60.65 Z"/>
+        
+        <!-- Your original frame structure from SVG -->
+        <path android:fillColor="#FFFFFF"
+              android:pathData="m 64.684,35.490 20.528,-20.671 c 0,0 0.308,-2.313 -1.830,-3.225 -2.138,-0.912 -3.106,-0.319 -3.106,-0.319 l 0.486,-1.907 c 0,0 6.632,-4.999 12.145,6.255 5.512,11.254 13.551,3.216 13.551,3.216 l 1.608,2.067 c 0,0 -10.158,7.987 -14.624,1.247 -4.466,-6.740 -6.172,-5.522 -6.172,-5.522 l -6.415,7.308 19.164,22.006 16.078,-17.378 -8.932,1.462 c 0,0 1.137,-3.735 10.881,-5.359 9.744,-1.624 6.496,3.898 6.496,3.898 l -5.197,1.137 -17.540,17.865 7.414,8.971 -3.028,2.636 -26.598,-33.821 -12.496,12.384 z"/>
+        
+        <!-- Right wheel (front) - unfilled stroke using path -->
+        <path android:fillColor="@android:color/transparent"
+              android:strokeColor="#FFFFFF"
+              android:strokeWidth="5"
+              android:pathData="M 104.29,72.998 A 19.27,19.27 0 1,1 142.84,72.998 A 19.27,19.27 0 1,1 104.29,72.998 Z"/>
+    
+    </group>
+</vector>
